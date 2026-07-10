@@ -3,8 +3,10 @@
 
 host: bandit.labs.overthewire.org
 port: 2220
-username: bandit0
-password: bandit0 이므로 접속 명령어 ssh bandit0@bandit.labs.overthewire.org -p 2220를 통해 접속한다. 이후 비밀번호 bandit0를 입력한다.
+
+0.
+username: bandit0, password: bandit0 이므로 접속 명령어 ssh bandit0@bandit.labs.overthewire.org -p 2220를 통해 접속한다. 이후 비밀번호 bandit0를 입력한다.
+
 1.
 비밀번호가 home directory의 readme 파일에 있으므로 우선 ls를 한다. readme 파일이 있다고 하므로 cat readme를 통해 내용을 보면 비밀번호는 6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR 이다.
 
@@ -69,3 +71,6 @@ ls-l을 실행하면 bandit20-do라는 파일이 -rws...로, setuid 실행파일
 ls -l을 하니 -rws...의 setuid 실행파일 suconnect가 있음을 확인했다. ./suconnet를 하니 뒤에 포트번호를 붙여 실행하면 상대편에서 비밀번호를 받으면 다음 비밀번호를 답신한다는 설명이 나온다. 따라서 다른 터미널을 열어 다시 bandit20에 접속하고 nc -l -p 12345를 통해 임시 포트를 열고 기다린다. 원래 포트에서 ./suconnect 12345를 실행하고 반대편 터미널에서 bandit20의 비밀번호를 입력하면 해당 터미널에 답변으로 bandit21의 비밀번호 bW9kBv5WC3P4yoDyf12LSdGuNz5ka6hY이 전송된다.
 
 22.
+안내대로 /etc/cron.d/에 가서 ls -l을 해보면 cronjob_bandit22라는 파일이 있으므로 cat cronjob_banit22를 해본다. 그러면 "* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null" 라는 내용이 있는데 이는 매분마다 bandit22의 권한으로 /usr/bin/cronjob_bandit22.sh를 실행한다는 뜻이다. 따라서 다시 cat /usr/bin/cronjob_bandit22.sh를 하면 "cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv" 라는 내용이 있는데, 이는 /etc/bandit_pass/bandit22의 내용을 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv에 복사한다는 내용이므로 마지막으로 cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv를 하면 정답 RYVux2rHEm9tiXHmLFzuR7Vhx6AZQMEz가 나온다.
+
+23.
